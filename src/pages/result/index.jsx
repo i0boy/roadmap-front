@@ -10,8 +10,8 @@ import {
   Header,
   HeaderLink,
   HeaderLinkWrapper,
-  HeaderTitleMain,
-  HeaderTitleSub,
+  HeaderTitleMain as RoadmapName,
+  HeaderTitleSub as RoadmapText,
   HeaderTitleWrapper,
   Wrapper,
 } from './index.style';
@@ -25,10 +25,10 @@ const Result = () => {
     <Wrapper>
       <Header>
         <HeaderTitleWrapper>
-          <HeaderTitleContainer />
-          <HeaderTitleSub>
+          <RoadmapNameContainer />
+          <RoadmapText>
             <span>{text['header.title.sub']}</span>
-          </HeaderTitleSub>
+          </RoadmapText>
           {!roadmapId && nodesFromEditing.length > 0 && (
             <BackToEditButton onClick={() => navigate('/make')}>
               계속 편집하기
@@ -47,12 +47,12 @@ const Result = () => {
   );
 };
 
-const HeaderTitleContainer = () => {
+const RoadmapNameContainer = () => {
   const data = useRoadMap();
   return (
-    <HeaderTitleMain>
+    <RoadmapName>
       <span>{data?.data?.name ?? text['header.title.main']}</span>
-    </HeaderTitleMain>
+    </RoadmapName>
   );
 };
 

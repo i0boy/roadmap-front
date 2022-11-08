@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+const onClick = () => alert('오픈 준비중입니다.');
+
 const Navbar = () => {
   const [loginCheck, setLoginCheck] = useState('');
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      setLoginCheck(token);
-    }
-  }, []);
 
   return (
     <>
@@ -19,15 +15,15 @@ const Navbar = () => {
             <Icon>Roady</Icon>
           </Link>
           <Nav>
-            <Link to="/">Home</Link>
-            {loginCheck ? (
-              <Link to="#">UserInfo</Link>
-            ) : (
-              <>
-                <Link to="/login">Login</Link>
-                <Link to="/register">Register</Link>
-              </>
-            )}
+            <Link to="#" onClick={onClick}>
+              Home
+            </Link>
+            <Link to="#" onClick={onClick}>
+              Login
+            </Link>
+            <Link to="#" onClick={onClick}>
+              Register
+            </Link>
           </Nav>
         </div>
       </Container>
