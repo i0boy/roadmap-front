@@ -1,11 +1,11 @@
 import React, {
   useEffect,
-  useState,
-  useRef,
   useLayoutEffect,
   useMemo,
+  useRef,
+  useState,
 } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { nodeListState } from '../../atoms/makeListAtoms';
 import { useRoadMap } from '../../hooks/useRoadmap';
@@ -36,23 +36,12 @@ export default function RoadMap() {
   }, []);
 
   useLayoutEffect(() => {
-    if (data && data.nodes) {
-      // console.log('data:', data);
-      renderedNodes.current = initializeNodeRefs(data.nodes);
-      setTree(createTree(data.nodes, data.rootIdx));
-    } else if (nodesFromEditing.length > 0) {
+    console.log(nodesFromEditing);
+    if (nodesFromEditing.length > 0) {
       renderedNodes.current = initializeNodeRefs(nodesFromEditing);
       // console.log('renderedNodes:', renderedNodes);
       setTree(createTree(nodesFromEditing, nodesFromEditing[0].idx));
-    } else
-      fetch('/mock_data.json')
-        .then((res) => res.json())
-        .then((data) => {
-          renderedNodes.current = initializeNodeRefs(data);
-          // console.log('renderedNodes:', renderedNodes);
-          // console.log('mock data loaded:', data);
-          setTree(createTree(data, 0));
-        });
+    }
   }, [data]);
 
   useLayoutEffect(() => {

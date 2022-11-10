@@ -26,7 +26,7 @@ function App() {
               <Route path="/" element={<Home />}></Route>
               <Route path="/viewtemplate" element={<Result />}></Route>
               <Route path="/make" element={<Make />}></Route>
-              <Route path="/view/:roadmapId" element={<Result />}></Route>
+              <Route path="/view" element={<Result />}></Route>
               <Route path="/test" element={<TestPage />}></Route>
               <Route path="/test/:roadmapId" element={<TestResult />}></Route>
             </Routes>

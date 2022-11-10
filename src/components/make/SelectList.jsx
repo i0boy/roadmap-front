@@ -1,17 +1,17 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import _ from 'lodash';
+import React, { useCallback, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
 import {
+  currentSelectedIdState,
   currentSelectViewState,
   depthState,
   emptyNodeCheckState,
   lastSelectIdState,
   nodeListState,
-  currentSelectedIdState,
 } from '../../atoms/makeListAtoms';
-import SelectItem from './SelectItem';
-import _ from 'lodash';
 import { AddNodeButton, AddNodeForm, AddNodeWrap } from './Make.styles';
+import SelectItem from './SelectItem';
 
 const SelectList = ({ data, depth }) => {
   const [isShown, setIsShown] = useState(false);

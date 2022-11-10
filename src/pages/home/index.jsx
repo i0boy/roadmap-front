@@ -2,6 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, SubTitle, Title } from './index.styles';
 
+/**
+ * @type{()=>import('../../types.d').Data}
+ * @returns
+ */
+const generateType = () => ({ name: 'test' });
+
 const Home = () => {
   return (
     <Container>

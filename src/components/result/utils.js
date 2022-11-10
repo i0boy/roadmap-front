@@ -1,6 +1,6 @@
 export const createTree = (nodes, parentIdx) => {
   const _nodes = JSON.parse(JSON.stringify(nodes));
-
+  console.log(_nodes);
   _nodes.forEach((node) => {
     node.idx !== parentIdx &&
       node.parent &&

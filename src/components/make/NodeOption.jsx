@@ -1,14 +1,14 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
+import { titleState } from '../../atoms/createAtoms';
 import {
+  currentSelectedIdState,
   depthState,
   nodeListState,
-  currentSelectedIdState,
 } from '../../atoms/makeListAtoms';
-import { titleState } from '../../atoms/createAtoms';
 import { useSaveRoadmap } from '../../hooks/useRoadmap';
-import { useNavigate } from 'react-router-dom';
 
 const NodeOption = () => {
   const navigate = useNavigate();
@@ -146,20 +146,29 @@ const NodeOption = () => {
     }
   };
 
+  const validateContext = ({ nodes = [], name = '' }) => {
+    if (nodes.length === 0) {
+      throw new Error('먼저 로드맵을 만들어 주세요!');
+    }
+    if (!name) {
+      throw new Error('로드맵 명을 입력해 주세요!');
+    }
+  };
+
   // 로드맵 저장 기능
   const handleSubmit = () => {
-    const context = {
-      name: title,
-      nodes: nodeList,
-      rootIdx: nodeList[0].idx,
-    };
-    console.log(context);
-    saveRoadmap.mutate(context, {
-      onSuccess: (d) => {
-        console.log(d);
-        navigate('/view/' + d.data.idx);
-      },
-    });
+    try {
+      const context = {
+        name: title,
+        nodes: nodeList,
+        rootIdx: nodeList?.[0]?.id || -1,
+      };
+      validateContext(context);
+      navigate('/view');
+    } catch (e) {
+      alert(e.message);
+      return;
+    }
   };
 
   return (

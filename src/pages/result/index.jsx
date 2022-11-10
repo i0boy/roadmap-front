@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
+import { titleState } from '../../atoms/createAtoms';
 import { nodeListState } from '../../atoms/makeListAtoms';
 import RoadMap from '../../components/result/Roadmap';
 import { useDeleteRoadmap, useRoadMap } from '../../hooks/useRoadmap';
@@ -48,10 +49,10 @@ const Result = () => {
 };
 
 const RoadmapNameContainer = () => {
-  const data = useRoadMap();
+  const title = useRecoilValue(titleState);
   return (
     <RoadmapName>
-      <span>{data?.data?.name ?? text['header.title.main']}</span>
+      <span>{title ?? text['header.title.main']}</span>
     </RoadmapName>
   );
 };
