@@ -32,7 +32,7 @@ const Result = () => {
           </RoadmapText>
           {!roadmapId && nodesFromEditing.length > 0 && (
             <BackToEditButton onClick={() => navigate('/make')}>
-              계속 편집하기
+              로드맵 수정하기
             </BackToEditButton>
           )}
         </HeaderTitleWrapper>
